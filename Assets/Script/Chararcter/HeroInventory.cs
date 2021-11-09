@@ -14,6 +14,14 @@ namespace TheFirstGame.Hero
         protected List<WeaponItem> _weaponList = new List<WeaponItem>();
         protected List<EquipmentItem> _equipmentList = new List<EquipmentItem>();
 
+        private HeroShooting _heroShooting;
+        
+
+        private void Start()
+        {
+            _heroShooting = GetComponent<HeroShooting>();
+        }
+
         /// <summary>
         /// Controlla se è possibile aggiungere un'arma all'inventario
         /// </summary>
@@ -52,6 +60,8 @@ namespace TheFirstGame.Hero
                 return false;
             }
             _weaponList.Add(item);
+
+            _heroShooting.EquipWeapon(item);
             return true;
         }
 
