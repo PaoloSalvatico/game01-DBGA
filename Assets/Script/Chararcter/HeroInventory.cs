@@ -22,6 +22,17 @@ namespace TheFirstGame.Hero
             _heroShooting = GetComponent<HeroShooting>();
         }
 
+        private void Update()
+        {
+            if(_weaponList.Count > 0 && 
+                Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                RandomEquipWeapon();           
+            }
+            
+
+        }
+
         /// <summary>
         /// Controlla se è possibile aggiungere un'arma all'inventario
         /// </summary>
@@ -61,7 +72,6 @@ namespace TheFirstGame.Hero
             }
             _weaponList.Add(item);
 
-            _heroShooting.EquipWeapon(item);
             return true;
         }
 
@@ -83,6 +93,20 @@ namespace TheFirstGame.Hero
             }
             _equipmentList.Add(item);
             return true;
+        }
+
+        public void RandomEquipWeapon()
+        {
+            int max = _weaponList.Count;
+            int equipRandom = Random.Range(0, max);
+            
+
+            if (_weaponList != null)
+            {
+                var equipWeapon = _weaponList[equipRandom];
+                _heroShooting.EquipWeapon(equipWeapon);
+            }
+           
         }
     }
 }
