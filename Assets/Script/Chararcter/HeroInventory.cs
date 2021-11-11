@@ -106,6 +106,21 @@ namespace TheFirstGame.Hero
             _equipmentList.Add(item);
             return true;
         }
+
+        private int _selectedWeaponIndex = -1;
+
+        public WeaponItem GetNextWeapon()
+        {
+            if (_weaponList.Count < 1) return null;
+
+            _selectedWeaponIndex++;
+
+            if(_selectedWeaponIndex >= _weaponList.Count)
+            {
+                _selectedWeaponIndex = 0;
+            }
+            return _weaponList[_selectedWeaponIndex];
+        }
     }
 }
 
