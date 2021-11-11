@@ -15,6 +15,14 @@ namespace TheFirstGame.InventorySystem
 
             PickedUp();
         }
+        protected override bool CanPickUp(HeroInventory inv)
+        {
+            if (inv == null) return false;
+            return inv.CanAddWeapon(pickup);
+
+        // Posso mettere tutto su una riga in questo modo, visto che entrambe le condizioni devono essere vere
+        //    return ((inv != null) && inv.CanAddWeapon(pickup));
+        }
     }
 }
 

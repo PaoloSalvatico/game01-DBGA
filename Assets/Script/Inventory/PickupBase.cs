@@ -22,8 +22,18 @@ namespace TheFirstGame.InventorySystem
         private void OnTriggerEnter(Collider other)
         {
             HeroInventory inv = other.GetComponent<HeroInventory>();
-            if (inv == null) return;
-            PickUp(inv);
+            if(CanPickUp(inv))
+            {
+                PickUp(inv);
+            }
+            
+        }
+
+        protected virtual bool CanPickUp(HeroInventory inv)
+        {  
+            if (inv == null) return false;
+
+            return true;
         }
 
         protected virtual void PickUp(HeroInventory inventory)

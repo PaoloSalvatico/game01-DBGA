@@ -10,11 +10,16 @@ namespace TheFirstGame.InventorySystem
     [System.Serializable]
     public class InventoryItem
     {
-        public string name;
-        public GameObject droppedItem;
+        [SerializeField] private string name;
 
+        public GameObject droppedItem;
         public float weight;
         public float cost;
+
+        public string Name
+        {
+            get { return name; }
+        }
     }
 }
 

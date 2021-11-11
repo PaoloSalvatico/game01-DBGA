@@ -8,7 +8,15 @@ namespace TheFirstGame.InventorySystem
     public class WeaponItem : InventoryItem
     {
         public GameObject bulletPrefab;
+        public WeaponType type;
+    }
 
+    public enum WeaponType
+    {
+        Basic,
+        Superior,
+        Alien,
+        Bless
     }
 }
 

@@ -6,6 +6,8 @@ namespace TheFirstGame.Hero
 {
     public class HeroController : MonoBehaviour
     {
+        [Range(0, 3)]
+        public int maxAlienWeapon = 1;
 
         void Start()
         {

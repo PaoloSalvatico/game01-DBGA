@@ -9,19 +9,51 @@ namespace TheFirstGame.Hero
     /// Gestisce l'inventiry di armi e equipaggiamento del player.
     /// </summary>
 {
+    [RequireComponent(typeof(HeroController))]
     public class HeroInventory : MonoBehaviour
     {
         protected List<WeaponItem> _weaponList = new List<WeaponItem>();
         protected List<EquipmentItem> _equipmentList = new List<EquipmentItem>();
 
+        protected HeroController _heroController;
+
+        private void Start()
+        {
+            _heroController = GetComponent<HeroController>();
+        }
         /// <summary>
         /// Controlla se è possibile aggiungere un'arma all'inventario
         /// </summary>
         /// <returns>True solo se c'è ancora spazio nell'inventario, se no False</returns>
 
-        public bool CanAddWeapon()
+        public bool CanAddWeapon(WeaponItem item)
+        {
+            switch(item.type)
+            {
+                case WeaponType.Alien:
+                    return CanAddAlienArtifact(item);
+                    
+                default:
+                    break;
+            }
+            return true;
+        }
+
+        protected bool CanAddAlienArtifact(WeaponItem item)
         {
 
+            if (_heroController.maxAlienWeapon < 1) return false;
+
+            var count = _heroController.maxAlienWeapon;
+            foreach (WeaponItem weapon in _weaponList)
+            {
+                //if(item.type == WeaponType.Alien)
+                if (item.type == weapon.type)
+                {
+                    count--;
+                    if (count < 1) return false;
+                }
+            }
             return true;
         }
 
@@ -30,7 +62,7 @@ namespace TheFirstGame.Hero
         /// </summary>
         /// <returns>True solo se c'è ancora spazio nell'inventario, se no False</returns>
 
-        public bool CanAddEquipment()
+        public bool CanAddEquipment(EquipmentItem item)
         {
 
             return true;
@@ -43,7 +75,7 @@ namespace TheFirstGame.Hero
         /// <returns>True se è stato possibile aggiungerlo, se no False</returns>
         public bool AddWeapon(WeaponItem item)
         {
-            if (!CanAddWeapon())
+            if (!CanAddWeapon(item))
             {
                 return false;
             }
@@ -63,7 +95,7 @@ namespace TheFirstGame.Hero
 
         public bool AddEquipment(EquipmentItem item)
         {
-            if (!CanAddEquipment())
+            if (!CanAddEquipment(item))
             {
                 return false;
             }
