@@ -7,6 +7,12 @@ namespace TheFirstGame.Hero
 {
     public class HeroController : MonoBehaviour
     {
+        [Header("Stats")]
+
+        [Range(0, 5)]
+        public int heroLife;
+        public int heroStrenght;
+
         [Header("Equipment")]
 
         [Range(0, 3)]
@@ -14,6 +20,8 @@ namespace TheFirstGame.Hero
 
         public KeyCode nextWeaponKey = KeyCode.L;
         public KeyCode nextEquipmentKey = KeyCode.P;
+        public KeyCode useConsumable = KeyCode.O;
+
 
         protected HeroInventory _inventory;
         protected HeroHandleWeapon _handleWeapon;
@@ -24,6 +32,8 @@ namespace TheFirstGame.Hero
             _inventory = GetComponent<HeroInventory>();
             _handleWeapon = GetComponent<HeroHandleWeapon>();
             _heroHandleEquipment = GetComponent<HeroHandleEquipment>();
+
+            
         }
 
         private void Update()
@@ -42,6 +52,16 @@ namespace TheFirstGame.Hero
             {
                 EquipmentItem equipment = _inventory.GetNextEquipment();
                 _heroHandleEquipment.EquipEquipment(equipment);
+            }
+
+            if(_inventory != null &&
+                _heroHandleEquipment != null &&
+                _inventory._selectedEquipmentIndex >= 0 &&
+                Input.GetKeyDown(useConsumable))
+            {
+                EquipmentItem equipment = _inventory.GetEquipment();
+                _heroHandleEquipment.UseConsumable(equipment);
+                
             }
         }
     }

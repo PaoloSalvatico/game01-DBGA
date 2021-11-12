@@ -108,7 +108,7 @@ namespace TheFirstGame.Hero
         }
 
         private int _selectedWeaponIndex = -1;
-        private int _selectedEquipmentIndex = -1;
+        public int _selectedEquipmentIndex = -1;
 
         public WeaponItem GetNextWeapon()
         {
@@ -134,6 +134,14 @@ namespace TheFirstGame.Hero
                 _selectedEquipmentIndex = 0;
             }
             return _equipmentList[_selectedEquipmentIndex];
+        }
+
+        public EquipmentItem GetEquipment()
+        {
+            if (_equipmentList.Count < 1) return null;
+
+            return _equipmentList[_selectedEquipmentIndex];
+
         }
     }
 }

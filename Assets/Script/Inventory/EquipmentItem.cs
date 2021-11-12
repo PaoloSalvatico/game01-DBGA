@@ -7,7 +7,7 @@ namespace TheFirstGame.InventorySystem
     [System.Serializable]
     public class EquipmentItem : InventoryItem
     {
-        protected bool isConsumable = false;
+        public bool isConsumable = false;
         public EquipmentType type;
 
         public enum EquipmentType
@@ -17,6 +17,7 @@ namespace TheFirstGame.InventorySystem
             Alien,
             Bless
         }
+            
     }
 }
 
