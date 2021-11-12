@@ -13,14 +13,17 @@ namespace TheFirstGame.Hero
         public int maxAlienWeapon;
 
         public KeyCode nextWeaponKey = KeyCode.L;
+        public KeyCode nextEquipmentKey = KeyCode.P;
 
         protected HeroInventory _inventory;
         protected HeroHandleWeapon _handleWeapon;
+        protected HeroHandleEquipment _heroHandleEquipment;
 
         private void Start()
         {
             _inventory = GetComponent<HeroInventory>();
             _handleWeapon = GetComponent<HeroHandleWeapon>();
+            _heroHandleEquipment = GetComponent<HeroHandleEquipment>();
         }
 
         private void Update()
@@ -31,6 +34,14 @@ namespace TheFirstGame.Hero
             {
                 WeaponItem weapon = _inventory.GetNextWeapon();
                 _handleWeapon.EquipWeapon(weapon);
+            }
+
+            if(_inventory != null &&
+                _heroHandleEquipment != null &&
+                Input.GetKeyDown(nextEquipmentKey))
+            {
+                EquipmentItem equipment = _inventory.GetNextEquipment();
+                _heroHandleEquipment.EquipEquipment(equipment);
             }
         }
     }
