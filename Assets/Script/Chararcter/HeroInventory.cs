@@ -126,7 +126,9 @@ namespace TheFirstGame.Hero
         public EquipmentItem GetNextEquipment()
         {
             if (_equipmentList.Count < 1) return null;
+
             _selectedEquipmentIndex++;
+
             if(_selectedEquipmentIndex >= _equipmentList.Count)
             {
                 _selectedEquipmentIndex = 0;

@@ -734,6 +734,7 @@ GameObject:
   - component: {fileID: 937509390}
   - component: {fileID: 937509391}
   - component: {fileID: 937509394}
+  - component: {fileID: 937509395}
   - component: {fileID: 937509392}
   - component: {fileID: 937509393}
   m_Layer: 0
@@ -790,6 +791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAlienWeapon: 2
   nextWeaponKey: 108
+  nextEquipmentKey: 112
 --- !u!114 &937509392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,6 +830,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f95fdc2ec01b864299faea79c6c24d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &937509395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937509388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42d10e0861404b478aabb7d18a5f765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &999118543
