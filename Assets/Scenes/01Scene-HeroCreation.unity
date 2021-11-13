@@ -789,6 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94f3d3381965ac4dae791b015481bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strength: 10
   maxAlienWeapon: 2
   nextWeaponKey: 108
   nextEquipmentKey: 112
@@ -965,6 +966,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105037872333302391, guid: 37bc92ce901206047b3d8b778f02a53a, type: 3}
+      propertyPath: pickup.weight
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1189829582914103544, guid: 37bc92ce901206047b3d8b778f02a53a, type: 3}
       propertyPath: m_RootOrder
       value: 10
