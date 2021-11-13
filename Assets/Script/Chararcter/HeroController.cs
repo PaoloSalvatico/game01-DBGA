@@ -7,6 +7,10 @@ namespace TheFirstGame.Hero
 {
     public class HeroController : MonoBehaviour
     {
+        [Header("Stats")]
+
+        public HeroStrenth strength = HeroStrenth.Regular;
+
         [Header("Equipment")]
 
         [Range(0, 3)]
@@ -43,6 +47,14 @@ namespace TheFirstGame.Hero
                 EquipmentItem equipment = _inventory.GetNextEquipment();
                 _heroHandleEquipment.EquipEquipment(equipment);
             }
+        }
+
+        public enum HeroStrenth
+        {
+            Weak = 5,
+            Regular = 10,
+            Strong = 20,
+            SuperHuman = 40
         }
     }
 }

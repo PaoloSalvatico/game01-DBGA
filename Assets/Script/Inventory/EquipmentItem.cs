@@ -12,10 +12,10 @@ namespace TheFirstGame.InventorySystem
 
         public enum EquipmentType
         {
-            Basic,
-            Superior,
-            Alien,
-            Bless
+            Light,
+            Medium,
+            Heavy,
+            Alien
         }
     }
 }
