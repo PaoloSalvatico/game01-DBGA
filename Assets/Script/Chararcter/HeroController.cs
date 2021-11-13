@@ -12,6 +12,7 @@ namespace TheFirstGame.Hero
         [Range(0, 5)]
         public int heroLife;
         public int heroStrenght;
+        public HeroStrength strength = HeroStrength.Strong;
 
         [Header("Equipment")]
 
@@ -63,6 +64,15 @@ namespace TheFirstGame.Hero
                 _heroHandleEquipment.UseConsumable(equipment);
                 
             }
+        }
+
+        public enum HeroStrength
+        {
+            Weak = 5,
+            Regular = 10,
+            Strong = 20,
+            SuperHuman = 40,
+            Guts = 500
         }
     }
 }

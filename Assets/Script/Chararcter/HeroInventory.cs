@@ -28,7 +28,10 @@ namespace TheFirstGame.Hero
 
         public bool CanAddWeapon(WeaponItem item)
         {
-            switch(item.type)
+            if ((int)_heroController.strength < item.weight + TotalWeight) return false;
+            if (_weaponList.Contains(item)) return false;
+
+            switch (item.type)
             {
                 case WeaponType.Alien:
                     return CanAddAlienArtifact(item);
@@ -64,6 +67,8 @@ namespace TheFirstGame.Hero
 
         public bool CanAddEquipment(EquipmentItem item)
         {
+            if ((int)_heroController.strength < item.weight + TotalWeight) return false;
+            if (_equipmentList.Contains(item)) return false;
 
             return true;
         }
@@ -79,10 +84,7 @@ namespace TheFirstGame.Hero
             {
                 return false;
             }
-            if(_weaponList.Contains(item))
-            {
-                return false;
-            }
+            
             _weaponList.Add(item);
             return true;
         }
@@ -99,10 +101,7 @@ namespace TheFirstGame.Hero
             {
                 return false;
             }
-            if (_equipmentList.Contains(item))
-            {
-                return false;
-            }
+            
             _equipmentList.Add(item);
             return true;
         }
@@ -142,6 +141,24 @@ namespace TheFirstGame.Hero
 
             return _equipmentList[_selectedEquipmentIndex];
 
+        }
+
+        public float TotalWeight
+        {
+            get
+            {
+                float result = 0;
+                foreach(var item in _equipmentList)
+                {
+                    result += item.weight;
+                }
+                foreach(var item in _weaponList)
+                {
+                    result += item.weight;
+                }
+
+                return result;
+            }
         }
     }
 }

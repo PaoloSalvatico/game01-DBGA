@@ -222,7 +222,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17858
+  m_Name: pb_Mesh17876
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -794,6 +794,7 @@ MonoBehaviour:
   maxAlienWeapon: 2
   nextWeaponKey: 108
   nextEquipmentKey: 112
+  useConsumable: 111
 --- !u!114 &937509392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,6 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818a29217b0fd0c4898b92f0c12e164e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _selectedEquipmentIndex: -1
 --- !u!114 &937509394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,6 +969,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105037872333302391, guid: 37bc92ce901206047b3d8b778f02a53a, type: 3}
+      propertyPath: pickup.weight
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1189829582914103544, guid: 37bc92ce901206047b3d8b778f02a53a, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -3192,6 +3198,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickupStrength
       objectReference: {fileID: 0}
+    - target: {fileID: 3500644744639614743, guid: 9b5ad389fb2a08648986b2747d322525, type: 3}
+      propertyPath: pickup.cost
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3500644744639614743, guid: 9b5ad389fb2a08648986b2747d322525, type: 3}
+      propertyPath: pickup.weight
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b5ad389fb2a08648986b2747d322525, type: 3}
 --- !u!1001 &7566446134675917252
@@ -3258,6 +3272,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7731837354894761555, guid: f7d046d1998797740886e31674504d58, type: 3}
+      propertyPath: pickup.cost
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731837354894761555, guid: f7d046d1998797740886e31674504d58, type: 3}
+      propertyPath: pickup.weight
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8843721440258825436, guid: f7d046d1998797740886e31674504d58, type: 3}
       propertyPath: m_RootOrder
       value: 11
