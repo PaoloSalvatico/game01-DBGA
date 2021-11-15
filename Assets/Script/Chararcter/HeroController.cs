@@ -61,7 +61,9 @@ namespace TheFirstGame.Hero
                 Input.GetKeyDown(useConsumable))
             {
                 EquipmentItem equipment = _inventory.GetEquipment();
+                //if (!equipment.isConsumable) return;
                 _heroHandleEquipment.UseConsumable(equipment);
+                // TODO implementare la distruzione del consumabile
                 
             }
         }

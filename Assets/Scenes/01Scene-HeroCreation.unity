@@ -791,6 +791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroLife: 3
   heroStrenght: 50
+  strength: 500
   maxAlienWeapon: 2
   nextWeaponKey: 108
   nextEquipmentKey: 112
@@ -3327,6 +3328,10 @@ PrefabInstance:
     - target: {fileID: 8843721440258825439, guid: f7d046d1998797740886e31674504d58, type: 3}
       propertyPath: m_Name
       value: PickupLife
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843721440258825439, guid: f7d046d1998797740886e31674504d58, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d046d1998797740886e31674504d58, type: 3}

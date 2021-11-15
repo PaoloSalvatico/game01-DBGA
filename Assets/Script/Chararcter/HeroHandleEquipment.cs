@@ -22,8 +22,22 @@ namespace TheFirstGame.Hero
 
         public void UseConsumable(EquipmentItem item)
         {
+            if (!item.isConsumable) return;
+
+            if (item.Name == "LifeUp") LifeConsumable();
+
+            if (item.Name == "StrengthUp") StrengthConsumable();
+
+        }
+
+        public void LifeConsumable()
+        {
             _heroController.heroLife += 5;
-            
+        }
+
+        public void StrengthConsumable()
+        {
+            _heroController.heroStrenght += 10;
         }
     }
 }
