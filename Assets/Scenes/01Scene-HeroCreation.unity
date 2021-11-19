@@ -3140,6 +3140,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &431464806906536500
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 431464806476122446, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5484a2928773ea409be972cf7238793, type: 2}
+    - target: {fileID: 4601335416482964564, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601335416482964564, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.776833
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601335416482964564, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601335416482964564, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601335416482964564, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601335416482964564, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601335416482964564, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601335416482964564, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601335416482964564, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601335416482964564, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601335416482964564, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601335416482964567, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
+      propertyPath: m_Name
+      value: PickupBullet-Hammer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da8a01772e1563a4eb49d99a50b0e3a0, type: 3}
 --- !u!1001 &7566446134675917252
 PrefabInstance:
   m_ObjectHideFlags: 0

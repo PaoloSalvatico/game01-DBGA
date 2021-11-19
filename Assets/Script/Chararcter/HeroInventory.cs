@@ -15,6 +15,8 @@ namespace TheFirstGame.Hero
         protected List<WeaponItem> _weaponList = new List<WeaponItem>();
         protected List<EquipmentItem> _equipmentList = new List<EquipmentItem>();
 
+        protected Dictionary<string, BulletItem> _bulletDictionary = new Dictionary<string, BulletItem>();
+
         protected HeroController _heroController;
 
         private void Start()
@@ -150,6 +152,25 @@ namespace TheFirstGame.Hero
                 return result;
             }
         }
+
+        /// <summary>
+        /// Aggiunge i proiettili all'inventario: se sono gia presenti dello stesso tipo, li somma
+        /// </summary>
+        /// <param name="item"> i dati dei proiettili</param>
+        public void AddBullets(BulletItem item)
+        {
+            BulletItem bullet;
+            if (_bulletDictionary.TryGetValue(item.weaponName, out bullet))
+            {
+                bullet.count += item.count;
+            }
+            else
+            {
+                _bulletDictionary.Add(item.weaponName, item);
+            }
+            
+        }
+        
     }
 }
 

@@ -11,7 +11,7 @@ namespace TheFirstGame.InventorySystem
     [RequireComponent(typeof(Collider))]
     public class PickupBase : MonoBehaviour
     {
-        private Collider _collider;
+        protected Collider _collider;
 
         private void Start()
         {
