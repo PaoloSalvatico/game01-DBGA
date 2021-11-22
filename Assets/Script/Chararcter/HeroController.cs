@@ -19,9 +19,12 @@ namespace TheFirstGame.Hero
         public KeyCode nextWeaponKey = KeyCode.L;
         public KeyCode nextEquipmentKey = KeyCode.P;
 
+        public string shootInput = "Alpha1";
+
         protected HeroInventory _inventory;
         protected HeroHandleWeapon _handleWeapon;
         protected HeroHandleEquipment _heroHandleEquipment;
+
 
         private void Start()
         {
@@ -46,6 +49,15 @@ namespace TheFirstGame.Hero
             {
                 EquipmentItem equipment = _inventory.GetNextEquipment();
                 _heroHandleEquipment.EquipEquipment(equipment);
+            }
+
+            if(Input.GetButtonDown(shootInput) &&
+                _handleWeapon != null &&
+                _handleWeapon.IsEquippedWeapon())
+            {
+                //TODO Controllare il numero di proiettili
+                //TODO Togliere proiettili sparati
+                _handleWeapon.Shoot();
             }
         }
 

@@ -65,6 +65,7 @@ MonoBehaviour:
     cost: 2000
     bulletPrefab: {fileID: 0}
     type: 2
+    weaponModelPrefab: {fileID: 7566446135815866856}
 --- !u!1001 &7566446135336411429
 PrefabInstance:
   m_ObjectHideFlags: 0

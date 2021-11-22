@@ -28,6 +28,7 @@ namespace TheFirstGame.Hero
         /// </summary>
         /// <returns>True solo se c'è ancora spazio nell'inventario, se no False</returns>
 
+        #region Weaopn
         public bool CanAddWeapon(WeaponItem item)
         {
             if ((int)_heroController.strength < item.weight + TotalWeight) return false;
@@ -89,6 +90,7 @@ namespace TheFirstGame.Hero
             _weaponList.Add(item);
             return true;
         }
+        #endregion
 
         /// <summary>
         /// Cerca di aggiungere un equipaggiamento all' EquipmentInventory.
@@ -166,7 +168,10 @@ namespace TheFirstGame.Hero
             }
             else
             {
-                _bulletDictionary.Add(item.weaponName, item);
+                // creazione di un clone dell'istanza proiettile, in maniera un po semplice ma funzionale, 
+
+                BulletItem clone = item.Clone();
+                _bulletDictionary.Add(item.weaponName, clone);
             }
             
         }

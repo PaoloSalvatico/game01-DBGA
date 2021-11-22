@@ -9,6 +9,8 @@ namespace TheFirstGame.InventorySystem
     {
         public GameObject bulletPrefab;
         public WeaponType type;
+        public GameObject weaponModelPrefab;
+
     }
 
     public enum WeaponType
