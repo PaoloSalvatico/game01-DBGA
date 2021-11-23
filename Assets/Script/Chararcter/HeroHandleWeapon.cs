@@ -13,6 +13,7 @@ namespace TheFirstGame.Hero
         public Transform weaponSocket;
         // TODO check prof script and adjust
         protected WeaponSpawner[] _spwnerList;
+        protected GameObject _weaponModel;
         public WeaponItem startingWeapon;
         
         public bool IsEquippedWeapon()
@@ -20,10 +21,6 @@ namespace TheFirstGame.Hero
             return _weapon != null;
         }
 
-        private void Start()
-        {
-            EquipWeapon(startingWeapon);
-        }
 
         public void EquipWeapon(WeaponItem item)
         {
@@ -34,10 +31,10 @@ namespace TheFirstGame.Hero
                 var modelDestroy = weaponSocket.GetChild(0).gameObject;
                 Destroy(modelDestroy);
             }
-            
-            var go = Instantiate(item.weaponModelPrefab, weaponSocket.position, weaponSocket.rotation, weaponSocket);
 
-            _spwnerList = go.GetComponentsInChildren<WeaponSpawner>();
+            _weaponModel = Instantiate(item.weaponModelPrefab, weaponSocket.position, weaponSocket.rotation, weaponSocket);
+
+            _spwnerList = _weaponModel.GetComponentsInChildren<WeaponSpawner>();
         }
 
         public int Shoot()
