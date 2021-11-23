@@ -13,18 +13,28 @@ namespace TheFirstGame.Enemy
 
         protected bool inRange = false;
         protected bool  inLineOfSight;
+
         protected float alertLevel;
+
+        protected Animator _animator;
+
+        public float alertMultiplier = 1.5f;
+        public float cooldownMultiplier = .5f;
 
         public LayerMask mask;
 
         private void Start()
         {
+            _animator = GetComponent<Animator>();
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
 
         private void Update()
         {
+            ///
+            ///Check
+            ///
             if (target == null) return;
 
             // Controllo che il target sia in range
@@ -33,19 +43,49 @@ namespace TheFirstGame.Enemy
 
             if(inRange)
             {
-                alertLevel += Time.deltaTime;
+                alertLevel += (Time.deltaTime * alertMultiplier);
             } else
             {
-                alertLevel -= Time.deltaTime;
+                alertLevel -= (Time.deltaTime * cooldownMultiplier);
             }
-            alertLevel = Mathf.Clamp(alertLevel, 0, 5);
+            alertLevel = Mathf.Clamp(alertLevel, 0, 7);
 
             // Controllo che il target isa in line di vista
-            inLineOfSight = Physics.Raycast(transform.position, target.position, Mathf.Infinity, mask);
-            
+            RaycastHit hit;
+            Vector3 direction = transform.TransformDirection(target.position - transform.position);
+            Physics.Raycast(transform.position, direction, out hit, senseDistance, mask);
+
+            inLineOfSight = (hit.collider != null) && (hit.collider.tag == "Player");
+
+            if (inLineOfSight)
+            {
+                Debug.Log(hit.collider.name);
+            }
+
+            _animator.SetFloat("AlertLevel", alertLevel);
+
+
+            ///
+            /// Think, in ce stato mi trovo, cosa faccio??
+            /// 
+
+            _animator.GetCurrentAnimatorStateInfo(0).IsName("Idle");
+
+
         }
 
+        public void IdleAction()
+        {
+            Debug.Log("Active Idle");
+        }
 
+        public void FollowTarget()
+        {
+            Debug.Log("Following target");
+            // agent.destination bla bla
+        }
+
+        #region Gizmos
         private void OnDrawGizmos()
         {
             Color c = new Color(0, 1, 0, .5f);
@@ -56,6 +96,8 @@ namespace TheFirstGame.Enemy
             if (target == null) return;
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(transform.position, target.position);
+            
         }
+        #endregion
     }
 }

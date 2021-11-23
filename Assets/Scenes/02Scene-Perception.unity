@@ -389,7 +389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 435067261}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,6 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 440347356}
   - component: {fileID: 440347355}
+  - component: {fileID: 440347357}
   m_Layer: 0
   m_Name: Sentinel
   m_TagString: Untagged
@@ -440,9 +441,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   senseDistance: 3
+  alertMultiplier: 1.5
+  cooldownMultiplier: 0.5
   mask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2147483647
 --- !u!4 &440347356
 Transform:
   m_ObjectHideFlags: 0
@@ -458,6 +461,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &440347357
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440347354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 799eb10333c4cd2448f8323c8d5ec68a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!43 &602929907
 Mesh:
   m_ObjectHideFlags: 0
@@ -975,11 +997,9 @@ GameObject:
   - component: {fileID: 937509389}
   - component: {fileID: 937509390}
   - component: {fileID: 937509391}
-  - component: {fileID: 937509394}
-  - component: {fileID: 937509395}
   - component: {fileID: 937509392}
-  - component: {fileID: 937509393}
-  m_Layer: 6
+  - component: {fileID: 937509396}
+  m_Layer: 0
   m_Name: Hero
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1053,51 +1073,20 @@ MonoBehaviour:
   rotateSpeed: 1.5
   horizontalAxis: Horizontal
   verticalAxis: Vertical
---- !u!114 &937509393
-MonoBehaviour:
+--- !u!136 &937509396
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937509388}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818a29217b0fd0c4898b92f0c12e164e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &937509394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937509388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f95fdc2ec01b864299faea79c6c24d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponSocket: {fileID: 435067261}
-  startingWeapon:
-    name: 
-    droppedItem: {fileID: 0}
-    weight: 0
-    cost: 0
-    bulletPrefab: {fileID: 0}
-    type: 0
-    weaponModelPrefab: {fileID: 0}
---- !u!114 &937509395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937509388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c42d10e0861404b478aabb7d18a5f765, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &999118543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,7 +2070,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 150798, guid: 55fcff81b514f4b8fa7b9ba02409307a, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 150800, guid: 55fcff81b514f4b8fa7b9ba02409307a, type: 3}
       propertyPath: m_Name
@@ -2089,7 +2078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 150800, guid: 55fcff81b514f4b8fa7b9ba02409307a, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 450800, guid: 55fcff81b514f4b8fa7b9ba02409307a, type: 3}
       propertyPath: m_RootOrder
@@ -2315,7 +2304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1900704840}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ModelContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
