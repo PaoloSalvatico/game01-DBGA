@@ -988,6 +988,7 @@ MonoBehaviour:
   maxAlienWeapon: 2
   nextWeaponKey: 108
   nextEquipmentKey: 112
+  shootInput: Fire1
 --- !u!114 &937509392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,6 +1030,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSocket: {fileID: 435067261}
+  startingWeapon:
+    name: 
+    droppedItem: {fileID: 0}
+    weight: 0
+    cost: 0
+    bulletPrefab: {fileID: 0}
+    type: 0
+    weaponModelPrefab: {fileID: 0}
 --- !u!114 &937509395
 MonoBehaviour:
   m_ObjectHideFlags: 0
