@@ -1,8 +1,9 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TheFirstGame.InventorySystem;
-//using TheFirstGame.WeaponSystem;
+using TheFirstGame.WeaponSystem;
 
 namespace TheFirstGame.Hero
 {
@@ -12,7 +13,7 @@ namespace TheFirstGame.Hero
 
         public Transform weaponSocket;
         // TODO check prof script and adjust
-        protected WeaponSpawner[] _spwnerList;
+        protected WeaponSpawner[] _spawnerList;
         protected GameObject _weaponModel;
         public WeaponItem startingWeapon;
         
@@ -34,16 +35,33 @@ namespace TheFirstGame.Hero
 
             _weaponModel = Instantiate(item.weaponModelPrefab, weaponSocket.position, weaponSocket.rotation, weaponSocket);
 
-            _spwnerList = _weaponModel.GetComponentsInChildren<WeaponSpawner>();
+            _spawnerList = _weaponModel.GetComponentsInChildren<WeaponSpawner>();
         }
 
+        public void UnequipWeapon()
+        {
+            if (weaponSocket.transform.childCount > 0)
+            {
+                var modelToDestroy = weaponSocket.GetChild(0).gameObject;
+                Destroy(modelToDestroy);
+            }
+
+            _weaponModel = null;
+
+            _spawnerList = Array.Empty<WeaponSpawner>();
+        }
+
+        /// <summary>
+        /// Esegue la fase di fuoco per ogni spawner dell'arma
+        /// </summary>
+        /// <returns></returns>
         public int Shoot()
         {
-            foreach(var spawner in _spwnerList)
+            foreach(var spawner in _spawnerList)
             {
                 spawner.Spawn(_weapon.bulletPrefab);
             }
-            return _spwnerList.Length;
+            return _spawnerList.Length;
         }
 
         private void OnDrawGizmos()

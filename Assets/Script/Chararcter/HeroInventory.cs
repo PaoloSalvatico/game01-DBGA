@@ -63,18 +63,6 @@ namespace TheFirstGame.Hero
             return true;
         }
 
-        /// <summary>
-        /// Controlla se è possibile aggiungere un equipaggiamento all'inventario
-        /// </summary>
-        /// <returns>True solo se c'è ancora spazio nell'inventario, se no False</returns>
-
-        public bool CanAddEquipment(EquipmentItem item)
-        {
-            if (_equipmentList.Contains(item)) return false;
-            if ((int)_heroController.strength < item.weight + TotalWeight) return false;
-
-            return true;
-        }
 
         /// <summary>
         /// Cerca di aggiungere un'arma al weaponInventory.
@@ -90,7 +78,35 @@ namespace TheFirstGame.Hero
             _weaponList.Add(item);
             return true;
         }
+
+        public bool DropWeapon()
+        {
+            if (_selectedWeaponIndex < 0) return false;
+            var item = _weaponList[_selectedWeaponIndex];
+            _weaponList.RemoveAt(_selectedWeaponIndex);
+
+            item.droppedItem.SetActive(true);
+            item.droppedItem.transform.position = transform.position - (transform.forward * 2);
+
+            return true;
+        }
+
         #endregion
+
+
+        /// <summary>
+        /// Controlla se è possibile aggiungere un equipaggiamento all'inventario
+        /// </summary>
+        /// <returns>True solo se c'è ancora spazio nell'inventario, se no False</returns>
+
+        public bool CanAddEquipment(EquipmentItem item)
+        {
+            if (_equipmentList.Contains(item)) return false;
+            if ((int)_heroController.strength < item.weight + TotalWeight) return false;
+
+            return true;
+        }
+
 
         /// <summary>
         /// Cerca di aggiungere un equipaggiamento all' EquipmentInventory.

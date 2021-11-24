@@ -17,9 +17,10 @@ namespace TheFirstGame.Hero
         public int maxAlienWeapon;
 
         public KeyCode nextWeaponKey = KeyCode.L;
+        public KeyCode dropWeaponKey = KeyCode.Z;
         public KeyCode nextEquipmentKey = KeyCode.P;
 
-        public string shootInput = "Alpha1";
+        public string shootInput = "Fire1";
 
         protected HeroInventory _inventory;
         protected HeroHandleWeapon _handleWeapon;
@@ -35,6 +36,7 @@ namespace TheFirstGame.Hero
 
         private void Update()
         {
+            // Selezione dell'arma
             if(_inventory!= null &&
                 _handleWeapon != null &&
                 Input.GetKeyDown(nextWeaponKey))
@@ -56,8 +58,19 @@ namespace TheFirstGame.Hero
                 _handleWeapon.IsEquippedWeapon())
             {
                 //TODO Controllare il numero di proiettili
+                if(_inventory.GetComponent<BulletItem>().count <
+                    _handleWeapon.weaponSocket.childCount - 1)
                 //TODO Togliere proiettili sparati
+
                 _handleWeapon.Shoot();
+            }
+
+            if (_inventory != null && _handleWeapon.IsEquippedWeapon() && Input.GetKeyDown(dropWeaponKey))
+            {
+                if (_inventory.DropWeapon())
+                {
+                    _handleWeapon.UnequipWeapon();
+                }
             }
         }
 

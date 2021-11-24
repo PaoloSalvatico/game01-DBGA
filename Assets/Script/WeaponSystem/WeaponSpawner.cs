@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSpawner : MonoBehaviour
+namespace TheFirstGame.WeaponSystem
 {
-    public void Spawn(GameObject prefab)
+    public class WeaponSpawner : MonoBehaviour
     {
-        Instantiate(prefab, transform.position, transform.rotation);
+        public void Spawn(GameObject prefab)
+        {
+            Instantiate(prefab, transform.position, transform.rotation);
+        }
     }
 }

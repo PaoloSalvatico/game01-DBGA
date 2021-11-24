@@ -33,7 +33,7 @@ namespace TheFirstGame.Enemy
         private void Update()
         {
             ///
-            ///Check
+            ///Check / Sense
             ///
             if (target == null) return;
 
@@ -50,7 +50,7 @@ namespace TheFirstGame.Enemy
             }
             alertLevel = Mathf.Clamp(alertLevel, 0, 7);
 
-            // Controllo che il target isa in line di vista
+            // Controllo che il target sia in linea di vista
             RaycastHit hit;
             Vector3 direction = transform.TransformDirection(target.position - transform.position);
             Physics.Raycast(transform.position, direction, out hit, senseDistance, mask);
