@@ -88,6 +88,8 @@ namespace TheFirstGame.Hero
             item.droppedItem.SetActive(true);
             item.droppedItem.transform.position = transform.position - (transform.forward * 2);
 
+            MainController.Instance.WeaponChanged(null);
+
             return true;
         }
 

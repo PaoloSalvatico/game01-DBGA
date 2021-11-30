@@ -3,16 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TheFirstGame;
+using TheFirstGame.InventorySystem;
 
 namespace TheFirstGame.UI
 {
-    public class UIManager : MonoBehaviour
+    public class UIManager : Singleton<UIManager>
     {
-        public Text pointsLabel;
+        public AbstractUIElement[] UiElements;
 
-        void Update()
+        
+        public void UpdateUI(UIData data)
         {
-            pointsLabel.text = "Points: " + MainController.Instance.GetPoints();
+            foreach(var element in UiElements)
+            {
+                element.UpdateUI(data);
+            }
+        }
+
+       
+
+        public void WeaponChanged(WeaponItem weapon)
+        {
+            
         }
     }
+
+   
 }
