@@ -8,9 +8,15 @@ namespace TheFirstGame.UI
     public class WeaponUi : AbstractUIElement
     {
         public Text label;
+        private void Start()
+        {
+            label.text = "---";
+        }
+
         public override void UpdateUI(UIData data)
         {
-            label.text = data.WeaponName;
+            string txt = data.WeaponName == null ? "---" : data.WeaponName;
+            label.text = txt;
         }
     }
 }

@@ -89,8 +89,18 @@ namespace TheFirstGame.Hero
             item.droppedItem.transform.position = transform.position - (transform.forward * 2);
 
             MainController.Instance.WeaponChanged(null);
+            MainController.Instance.BulletsChanged(null);
 
             return true;
+        }
+
+        public WeaponItem SelectedWeapon
+        {
+            get
+            {
+                if (_selectedWeaponIndex < 0 || _selectedWeaponIndex >= _weaponList.Count) return null;
+                return _weaponList[_selectedWeaponIndex];
+            }
         }
 
         #endregion
@@ -124,6 +134,9 @@ namespace TheFirstGame.Hero
             }
             
             _equipmentList.Add(item);
+            _selectedEquipmentIndex = _selectedEquipmentIndex < 0 ? 0 : _selectedEquipmentIndex;
+
+            MainController.Instance.EquipmentChanged(item);
             return true;
         }
 
@@ -140,7 +153,12 @@ namespace TheFirstGame.Hero
             {
                 _selectedWeaponIndex = 0;
             }
-            return _weaponList[_selectedWeaponIndex];
+            var selectedWeapon = _weaponList[_selectedWeaponIndex];
+
+            MainController.Instance.WeaponChanged(_weaponList[_selectedWeaponIndex]);
+            MainController.Instance.BulletsChanged(GetBulletData(selectedWeapon.Name));
+
+            return selectedWeapon;
         }
 
         public EquipmentItem GetNextEquipment()
@@ -153,7 +171,23 @@ namespace TheFirstGame.Hero
             {
                 _selectedEquipmentIndex = 0;
             }
-            return _equipmentList[_selectedEquipmentIndex];
+            var item = _equipmentList[_selectedEquipmentIndex];
+            MainController.Instance.EquipmentChanged(item);
+
+            return item;
+        }
+
+        public bool DropEquipment()
+        {
+            if (_selectedEquipmentIndex < 0) return false;
+            var item = _equipmentList[_selectedEquipmentIndex];
+            _equipmentList.RemoveAt(_selectedEquipmentIndex);
+
+            item.droppedItem.SetActive(true);
+            item.droppedItem.transform.position = transform.position - (transform.forward * 2);
+            _selectedEquipmentIndex = _equipmentList.Count == 0 ? -1 : 0;
+            MainController.Instance.EquipmentChanged(null);
+            return true;
         }
 
         public float TotalWeight
@@ -179,21 +213,58 @@ namespace TheFirstGame.Hero
         /// <param name="item"> i dati dei proiettili</param>
         public void AddBullets(BulletItem item)
         {
-            BulletItem bullet;
-            if (_bulletDictionary.TryGetValue(item.weaponName, out bullet))
+            BulletItem bullItem;
+            if (_bulletDictionary.TryGetValue(item.weaponName, out bullItem))
             {
-                bullet.count += item.count;
+                bullItem.count += item.count;
+                MainController.Instance.BulletsChanged(item);
             }
             else
             {
                 // creazione di un clone dell'istanza proiettile, in maniera un po semplice ma funzionale, 
 
-                BulletItem clone = item.Clone();
-                _bulletDictionary.Add(item.weaponName, clone);
+                bullItem = item.Clone();
+                _bulletDictionary.Add(item.weaponName, bullItem);
             }
             
         }
-        
+
+        /// <summary>
+        /// Rimuove un numero predefinito di proiettili ad uno stock preesistente
+        /// </summary>
+        /// <param name="weaponName"></param>
+        /// <param name="numBullets"></param>
+        public void RemoveBullets(string weaponName, int numBullets)
+        {
+            BulletItem bullItem;
+            if (_bulletDictionary.TryGetValue(weaponName, out bullItem))
+            {
+                bullItem.count -= numBullets;
+            }
+            MainController.Instance.BulletsChanged(bullItem);
+        }
+
+        /// <summary>
+        /// Ritorna il numero di proiettili disponibili per una particolare arma
+        /// </summary>
+        /// <param name="weaponName"></param>
+        /// <returns>Il numero di proiettili disponibili</returns>
+        public int GetAvailableBullets(string weaponName)
+        {
+            BulletItem item;
+            _bulletDictionary.TryGetValue(weaponName, out item);
+
+            return item != null ? item.count : 0;
+        }
+
+        public BulletItem GetBulletData(string weaponName)
+        {
+            BulletItem item;
+            _bulletDictionary.TryGetValue(weaponName, out item);
+
+            return item;
+        }
+
     }
 }
 

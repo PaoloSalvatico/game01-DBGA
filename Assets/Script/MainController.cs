@@ -36,6 +36,18 @@ namespace TheFirstGame
 
             UIManager.Instance.UpdateUI(_uiData);
         }
+        public void BulletsChanged(BulletItem item)
+        {
+            _uiData.BulletData = item;
+            UIManager.Instance.UpdateUI(_uiData);
+        }
+
+        public void EquipmentChanged(EquipmentItem item)
+        {
+            _uiData.EquipmentData = item;
+
+            UIManager.Instance.UpdateUI(_uiData);
+        }
     }
 
 }
