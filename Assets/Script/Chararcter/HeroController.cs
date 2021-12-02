@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheFirstGame.InventorySystem;
+using TheFirstGame.Interfaces;
 
 namespace TheFirstGame.Hero
 {
-    public class HeroController : MonoBehaviour
+    public class HeroController : MonoBehaviour, IAlertable
     {
         [Header("Stats")]
 
@@ -25,7 +26,6 @@ namespace TheFirstGame.Hero
         protected HeroInventory _inventory;
         protected HeroHandleWeapon _handleWeapon;
         protected HeroHandleEquipment _heroHandleEquipment;
-
 
         private void Start()
         {
@@ -73,6 +73,15 @@ namespace TheFirstGame.Hero
                 }
             }
         }
+
+        #region Implements IAlertable
+
+        public void Alert(int warningLevel = 0, Transform target = null)
+        {
+            Debug.Log("...");
+        }
+
+        #endregion
 
         public enum HeroStrenth
         {

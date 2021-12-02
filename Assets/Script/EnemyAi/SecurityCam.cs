@@ -41,11 +41,18 @@ namespace TheFirstGame.Interfaces
         }
 
 
-        #region
+        #region Implement IAlerter
         public void SendAlert()
         {
-            //TODO Implementare l'alert
-            Debug.Log("Ho scoperto qualcosa");
+            var ownable = GetComponent<IOwnable>();
+            if(ownable != null)
+            {
+                var owner = ownable.GetOwner();
+                if(owner != null)
+                {
+                    var alertable = owner.GetComponent<IAlertable>();
+                }
+            }
         }
         #endregion
 
