@@ -8,25 +8,34 @@ namespace TheFirstGame.AI
     public class RandomDronePatroller : DronePatroller
     {
         protected bool isPatrolling;
+        protected bool recalling;
 
         public float patrolExtension;
+
+        protected override void Start()
+        {
+            base.Start();
+            target = transform;
+        }
         protected override void Update()
         {
             if(isPatrolling)
             {
-                if(Vector3.Distance(transform.position, target.position) < 1)
+                if(target != null && Vector3.Distance(transform.position, agent.destination) < 1)
                 {
-                    //target = Random.insideUnitCircle
-                    //TODO trova una nuova destinazione
+                    Vector2 unitCircle = Random.insideUnitCircle;
+                    Vector3 offset = new Vector3(unitCircle.x, 0, unitCircle.y) * patrolExtension;
+
+                    agent.destination = transform.position + offset;
                 }
-                else
-                {
-                    agent.destination = target.position;
-                }
+            }
+            else if (!recalling)
+            {
+                agent.destination = transform.position;
             }
             else
             {
-                agent.destination = transform.position;
+                agent.destination = target.position;
             }
 
         }
@@ -34,6 +43,7 @@ namespace TheFirstGame.AI
         public override void StartPatrolling()
         {
             isPatrolling = true;
+            recalling = false;
         }
 
 
@@ -45,6 +55,13 @@ namespace TheFirstGame.AI
         public override bool IsPatrolling()
         {
             return isPatrolling;
+        }
+
+        public override void Recall()
+        {
+            EndPatrolling();
+            recalling = true;
+            base.Recall();
         }
     }
 }

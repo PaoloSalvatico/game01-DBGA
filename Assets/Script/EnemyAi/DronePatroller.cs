@@ -10,7 +10,7 @@ namespace TheFirstGame.AI
     {
         protected Transform target;
         protected NavMeshAgent agent;
-        void Start()
+        protected virtual void Start()
         {
             agent = GetComponent<NavMeshAgent>();
         }
@@ -40,6 +40,7 @@ namespace TheFirstGame.AI
             if (ownable == null) return;
 
             target = ownable.GetOwner().transform;
+            
         }
         #endregion
     }
