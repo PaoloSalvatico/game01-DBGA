@@ -11,6 +11,9 @@ namespace TheDayAfter.Interfaces
 
         public Camera cam;
         protected Plane[] _planes;
+        public string lockableTag;
+        public string[] lockableTags;
+
 
         protected virtual void Update()
         {
@@ -27,8 +30,12 @@ namespace TheDayAfter.Interfaces
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other);
-            _checkableItems.Add(other);
+            ITaggable taggable = other.GetComponent<ITaggable>();
+            if(taggable != null && taggable.HasTags(lockableTags))
+            {
+                Debug.Log(other);
+                _checkableItems.Add(other);
+            }           
         }
 
         private void OnTriggerExit(Collider other)

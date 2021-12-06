@@ -2837,7 +2837,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32744
+  m_Name: pb_Mesh23682
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5796,10 +5796,10 @@ MonoBehaviour:
   m_Texture: {fileID: 8400000, guid: 1a5f1a1031883d149a7a067ecf044eb4, type: 2}
   m_UVRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.9
+    y: 0.9
+    width: 0.2
+    height: 0.2
 --- !u!222 &2071370971
 CanvasRenderer:
   m_ObjectHideFlags: 0

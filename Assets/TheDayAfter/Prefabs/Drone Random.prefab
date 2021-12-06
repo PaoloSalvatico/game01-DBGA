@@ -191,6 +191,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1447088715816854252}
+  lockableTag: 
+  lockableTags:
+  - Enemy
+  - MiniBoss
 --- !u!135 &1447088715956097443
 SphereCollider:
   m_ObjectHideFlags: 0
