@@ -24,6 +24,8 @@ public class HeroHandleDrone : MonoBehaviour
         if (ownable != null) ownable.SetOwner(gameObject);
 
         Recall();
+        //StartPatrolling();
+        //Patrol();
     }
 
     public void Patrol()

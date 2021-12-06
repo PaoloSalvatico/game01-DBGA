@@ -1,25 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TheDayAfter.Interfaces;
 
 namespace TheDayAfter.AI
 {
+    [RequireComponent(typeof(Animator))]
     public class RandomDronePatroller : AbstractDronePatroller
     {
-        protected bool _isPatrolling;
-        protected bool _recalling;
+        protected Animator _ai;
 
         public float patrolExtension = 1;
 
         protected override void Start()
         {
             base.Start();
+
+            _ai = GetComponent<Animator>();
             _target = transform;
         }
 
         protected override void Update()
         {
-            if(_isPatrolling)
+            if(IsPatrolling())
             {
                 if(_target != null && Vector3.Distance(transform.position, _agent.destination) < 1)
                 {
@@ -28,37 +31,61 @@ namespace TheDayAfter.AI
                     _agent.destination = transform.position + offset;
                 }
             }
-            else if (!_recalling)
+            else if (IsRecalling())
             {
-                _agent.destination = transform.position;
+                var ownable = GetComponent<IOwnable>();
+                if(ownable != null && ownable.GetOwner() != null)
+                {
+                    _agent.destination = ownable.GetOwner().transform.position;
+                }
             }
-            else
+            else if (IsAlerted())
             {
-                _agent.destination = _target.position;
+                Recall();
             }
+            //else
+            //{
+            //    _agent.destination = _target.position;
+            //}
         }
 
         public override void StartPatrolling()
         {
-            _isPatrolling = true;
-            _recalling = false;
+            _ai.SetTrigger(C.DRONE_PARAM_STARTPATROL);
         }
 
         public override void EndPatrolling()
         {
-            _isPatrolling = false;
+            Recall();
         }
 
         public override bool IsPatrolling()
         {
-            return _isPatrolling;
+            return _ai.GetCurrentAnimatorStateInfo(0).IsName(C.DRONE_STATE_PATROL);
+        }
+
+        public override bool IsRecalling()
+        {
+            return _ai.GetCurrentAnimatorStateInfo(0).IsName(C.DRONE_STATE_RECALL);
+        }
+
+        protected bool IsLockedOnTarget()
+        {
+            return _ai.GetCurrentAnimatorStateInfo(0).IsName(C.DRONE_STATE_LOCK_ON_TARGET);
+
+        }
+
+        protected bool IsAlerted()
+        {
+            return _ai.GetCurrentAnimatorStateInfo(0).IsName(C.DRONE_STATE_ALERT);
+
         }
 
         public override void Recall()
         {
-            EndPatrolling();
-            _recalling = true;
-            base.Recall();
+            _ai.SetTrigger(C.DRONE_PARAM_RECALL);
+            // _recalling = true;
+            // base.Recall();
         }
 
         private void OnDrawGizmosSelected()

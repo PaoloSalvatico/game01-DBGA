@@ -29,7 +29,10 @@ namespace TheDayAfter.AI
 
         abstract public void EndPatrolling();
 
-        abstract public bool IsPatrolling();
+        public virtual bool IsPatrolling() { return false; }
+
+        public virtual bool IsRecalling() { return false; }
+
 
         public virtual void Recall()
         {

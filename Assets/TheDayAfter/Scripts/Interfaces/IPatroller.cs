@@ -7,7 +7,7 @@ namespace TheDayAfter.Interfaces
         void EndPatrolling();
         void Recall();
         bool IsPatrolling();
-
+        bool IsRecalling();
     }
 
 }
