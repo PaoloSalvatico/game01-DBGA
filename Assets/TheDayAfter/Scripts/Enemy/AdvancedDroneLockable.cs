@@ -10,7 +10,6 @@ namespace TheDayAfter.Enemy
         public EnemyTags[] tags;
         public bool HasTag(string TagName)
         {
-            tags[0].ToString();
             return true;
         }
 

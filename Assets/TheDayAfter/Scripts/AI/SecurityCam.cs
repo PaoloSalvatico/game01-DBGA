@@ -34,6 +34,7 @@ namespace TheDayAfter.Interfaces
                     break;
                 }
             }
+
             var val = _ai.GetFloat(C.DRONE_PARAM_ALERT_LEVEL);
             if (itemFound != null)
             {
